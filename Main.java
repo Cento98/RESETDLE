@@ -11,8 +11,6 @@ public class Main {
         generador = new GeneracionJugador();
         Jugador jugadorDelDia = generador.getJugador();
 
-        jugadorDelDia.imprimirJugador();
-
         bienvenida();
 
         String nombre = "";
@@ -82,17 +80,64 @@ public class Main {
             colores.add("Rojo");
         }
 
-        mostrar(jugadorElegido, colores);
+        mostrarJugador(jugadorElegido, colores);
     }
 
-    private static void mostrar(Jugador jugador, List<String> colores){
-        jugador.imprimirJugador();
-        System.out.println("***************************************************************************");
-        for(String item: colores){
-            System.out.print("*  "+item+"  *");
+    private static String obtenerColorAnsi(String color) {
+        String colorFormat ="";
+        switch (color.toLowerCase()) {
+            case "rojo":  
+                colorFormat = ConsoleColor.ROJO;
+            break;
+            case "verde": 
+                colorFormat = ConsoleColor.VERDE;
+            break;
+            case "amarillo": 
+                colorFormat = ConsoleColor.AMARILLO;
+            break;
+            default: 
+                 colorFormat = ConsoleColor.RESET;
+            break;
         }
-        System.out.println();
-        System.out.println("***************************************************************************");
+
+        return colorFormat;
+    }
+
+    public static void mostrarJugador(Jugador jugador, List<String> colores) {
+
+        List<String> nombresCampos = List.of(
+                "Nombre",
+                "Faccion",
+                "Main",
+                "Alter",
+                "Calvo",
+                "Rol",
+                "Ano"
+        );
+
+        List<String> valores = List.of(
+                jugador.getNombre(),
+                jugador.getFaccion(),
+                String.join(", ", jugador.getMain()),
+                String.join(", ", jugador.getAlter()),
+                jugador.getCalvo(),
+                String.join(", ", jugador.getRol()),
+                jugador.getAno()
+        );
+
+        System.out.println("========================================================");
+
+        for (int i = 0; i < nombresCampos.size() && i < colores.size(); i++) {
+
+            String colorAnsi = obtenerColorAnsi(colores.get(i));
+            String valorColoreado = ConsoleColor.aplicarColor(valores.get(i), colorAnsi);
+
+            System.out.printf("%-15s : %s%n",
+                    nombresCampos.get(i),
+                    valorColoreado);
+        }
+
+        System.out.println("========================================================");
     }
 
     private static String compararPosibilidades(String[] dia,  String[] ele){

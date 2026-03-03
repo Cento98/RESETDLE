@@ -17,6 +17,15 @@ public class GeneracionJugador {
 		this.jugadores.add(new Jugador("Kamichi","Alianza",new String[]{"Evoker","Sacerdote"},new String[]{"Druida","Paladin"},"No",new String[]{"Tank","Dps","Heal"},"1998"));
 		this.jugadores.add(new Jugador("Compy","Alianza",new String[]{"Guerrero","Druida"},new String[]{"Mago","Monje"},"No",new String[]{"Tank","Dps"},"1990"));
 		this.jugadores.add(new Jugador("Shabranz","Horda",new String[]{"DH"},new String[]{"DH"},"Si",new String[]{"Dps"},"1980"));
+        this.jugadores.add(new Jugador("Gorim","Alianza",new String[]{"DK", "Paladin"},new String[]{"Guerrero","DH"},"No",new String[]{"Dps"},"1999"));
+        this.jugadores.add(new Jugador("Squall","Horda",new String[]{"DH","Mago"},new String[]{"Hunter"},"Si",new String[]{"Dps"},"1995"));
+        this.jugadores.add(new Jugador("Xeraxy","Alianza",new String[]{"Sacerdote",},new String[]{"Druida"},"Si",new String[]{"Heal","Dps"},"2000"));
+        this.jugadores.add(new Jugador("Choq","Choq",new String[]{"Chaman",},new String[]{"Monje"},"Si",new String[]{"Heal","Dps"},"1996"));
+        this.jugadores.add(new Jugador("Orocha","Horda",new String[]{"DK",},new String[]{"Brujo"},"Si",new String[]{"Dps"},"1987"));
+        this.jugadores.add(new Jugador("Barrinas","Horda",new String[]{"Guerrero",},new String[]{"Paladin"},"Si",new String[]{"Dps"},"1996"));
+        this.jugadores.add(new Jugador("Xque","Alianza",new String[]{"Sacerdote",},new String[]{"Druida"},"No",new String[]{"Heal","Dps"},"1998"));
+        this.jugadores.add(new Jugador("Mitsune","Horda",new String[]{"DH",},new String[]{"Monje"},"Si",new String[]{"Tank","Dps"},"1996"));
+        this.jugadores.add(new Jugador("Penta","Alianza",new String[]{"Chaman, Hunter",},new String[]{"Sacerdote"},"No",new String[]{"Dps"},"2000"));
 		
 		int randomIndex = ThreadLocalRandom.current().nextInt(jugadores.size());
 		
