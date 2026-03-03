@@ -6,37 +6,46 @@ public class Main {
 
     private static GeneracionJugador generador;
     public static void main(String[] args) {
-
         Scanner scan = new Scanner(System.in);
-        generador = new GeneracionJugador();
-        Jugador jugadorDelDia = generador.getJugador();
+        try{
+            
+            generador = new GeneracionJugador();
+            Jugador jugadorDelDia = generador.getJugador();
 
-        bienvenida();
+            bienvenida();
 
-        String nombre = "";
-        System.out.println("Escribe un nombre para empezar:");
-        boolean firstTime = true;
-        int contador = 0;
-        boolean comprobacionFinal = true;
-        do{
+            String nombre = "";
+            System.out.println("Escribe un nombre para empezar:");
+            boolean firstTime = true;
+            int contador = 0;
+            boolean comprobacionFinal = true;
             do{
-                if(!firstTime){
-                    System.out.println("Escribe un nombre:");
+                do{
+                    if(!firstTime){
+                        System.out.println("Escribe un nombre:");
+                    }
+                    nombre = scan.nextLine();
+                    firstTime = false;
+                }while(comprobarNombre(nombre));
+
+                limpiar();
+
+                contador++;
+                compararJugadores(nombre, jugadorDelDia);
+
+                if(nombre.equalsIgnoreCase(jugadorDelDia.getNombre())){
+                    System.out.println("Enhorabuena, has adivinado el miembro al "+contador+" intento");
+                    comprobacionFinal = false;
                 }
-                nombre = scan.nextLine();
-                firstTime = false;
-            }while(comprobarNombre(nombre));
+            }while(comprobacionFinal);
+            System.out.println("\nPulsa ENTER para salir...");
+            scan.nextLine();
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("\nPulsa ENTER para salir...");
+            scan.nextLine();
+        } 
 
-            limpiar();
-
-            contador++;
-            compararJugadores(nombre, jugadorDelDia);
-
-            if(nombre.equalsIgnoreCase(jugadorDelDia.getNombre())){
-                System.out.println("Enhorabuena, has adivinado el miembro al "+contador+" intento");
-                comprobacionFinal = false;
-            }
-        }while(comprobacionFinal);
     }
 
     private static void compararJugadores(String nombre, Jugador jugadorDelDia){
