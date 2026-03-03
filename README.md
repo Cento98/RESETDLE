@@ -8,4 +8,4 @@ Jugadores añadidos: Bors, Snyk, Kamichi, Compy, Shabranz, Gorim, Squall, Xeraxy
 
 Recuerda que necesitas tener el jdk17 para poder ejecutarlo.
 
-Actualmente estamos en la version 0.1.0
+Actualmente estamos en la version 1.0.0
