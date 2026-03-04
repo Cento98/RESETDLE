@@ -1,20 +1,25 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
 
     private static GeneracionJugador generador;
+    private static HashMap<String, String> nombres;
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         try{
             
             generador = new GeneracionJugador();
             Jugador jugadorDelDia = generador.getJugador();
+            nombres = generador.getNombresConfaccion();
 
             bienvenida();
 
             String nombre = "";
+            mostrarNombres();
             System.out.println("Escribe un nombre para empezar:");
             boolean firstTime = true;
             int contador = 0;
@@ -22,9 +27,11 @@ public class Main {
             do{
                 do{
                     if(!firstTime){
+                        mostrarNombres();
                         System.out.println("Escribe un nombre:");
                     }
                     nombre = scan.nextLine();
+                    nombres.remove(nombre);
                     firstTime = false;
                 }while(comprobarNombre(nombre));
 
@@ -46,6 +53,23 @@ public class Main {
             scan.nextLine();
         } 
 
+    }
+
+    private static void mostrarNombres(){
+        String azul = "\u001B[34m";
+        String rojo = "\u001B[31m";
+        String blanco = "\u001B[0m";
+        System.out.println();
+        for(Map.Entry<String, String> entry : nombres.entrySet()){
+            if(entry.getValue().equalsIgnoreCase("Horda")){
+                System.out.print(rojo+"["+entry.getKey()+"]"+blanco);
+            }else{
+                System.out.print(azul+"["+entry.getKey()+"]"+blanco);
+            }
+            
+        }
+        System.out.println();
+        System.out.println();
     }
 
     private static void compararJugadores(String nombre, Jugador jugadorDelDia){
@@ -114,25 +138,9 @@ public class Main {
 
     public static void mostrarJugador(Jugador jugador, List<String> colores) {
 
-        List<String> nombresCampos = List.of(
-                "Nombre",
-                "Faccion",
-                "Main",
-                "Alter",
-                "Calvo",
-                "Rol",
-                "Ano"
-        );
+        List<String> nombresCampos = List.of("Nombre","Faccion","Main","Alter","Calvo","Rol","Ano");
 
-        List<String> valores = List.of(
-                jugador.getNombre(),
-                jugador.getFaccion(),
-                String.join(", ", jugador.getMain()),
-                String.join(", ", jugador.getAlter()),
-                jugador.getCalvo(),
-                String.join(", ", jugador.getRol()),
-                jugador.getAno()
-        );
+        List<String> valores = List.of(jugador.getNombre(),jugador.getFaccion(),String.join(", ", jugador.getMain()),String.join(", ", jugador.getAlter()),jugador.getCalvo(),String.join(", ", jugador.getRol()),jugador.getAno());
 
         System.out.println("========================================================");
 
