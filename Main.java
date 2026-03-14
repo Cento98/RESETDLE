@@ -31,7 +31,8 @@ public class Main {
                         System.out.println("Escribe un nombre:");
                     }
                     nombre = scan.nextLine();
-                    nombres.remove(nombre);
+                    String nombreConMayus = nombre.substring(0, 1).toUpperCase().concat(nombre.substring(1));
+                    nombres.remove(nombreConMayus);
                     firstTime = false;
                 }while(comprobarNombre(nombre));
 
@@ -129,7 +130,7 @@ public class Main {
                 colorFormat = ConsoleColor.AMARILLO;
             break;
             default: 
-                 colorFormat = ConsoleColor.RESET;
+                 colorFormat = ConsoleColor.BLANCO;
             break;
         }
 
